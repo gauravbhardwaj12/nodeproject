@@ -4,6 +4,10 @@ const productrouter=express.Router();
 
 productrouter.get("/",async (req,res)=>{
     const products = await product.find();
+    if(!products){
+        return res.send(400)
+        .json({ error:"no product you have" })
+    }
     res.send(products);
 })
 productrouter.get("/:id",async (req,res)=>{
